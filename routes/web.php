@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
@@ -39,5 +40,7 @@ Route::get('auth/github/callback', function () {
 
     return redirect('/dashboard');
 });
+
+Route::resource('clientes', ClienteController::class);
 
 require __DIR__ . '/auth.php';
