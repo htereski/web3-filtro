@@ -49,4 +49,8 @@
             </x-primary-button>
         </div>
     </form>
+
+    <a href="{{ route('github.auth') }}">
+        Entrar com GitHub
+    </a>
 </x-guest-layout>
