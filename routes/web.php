@@ -19,6 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('clientes', ClienteController::class);
 });
 
 Route::get('/auth/redirect', function () {
@@ -27,7 +29,7 @@ Route::get('/auth/redirect', function () {
 
 Route::get('auth/github/callback', function () {
     $githubUser = Socialite::driver('github')->user();
-    
+
     $user = User::updateOrCreate([
         'github_id' => $githubUser->id,
     ], [
@@ -40,7 +42,5 @@ Route::get('auth/github/callback', function () {
 
     return redirect('/clientes');
 });
-
-Route::resource('clientes', ClienteController::class);
 
 require __DIR__ . '/auth.php';
